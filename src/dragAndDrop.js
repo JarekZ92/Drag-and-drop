@@ -1,4 +1,5 @@
-import React {Component} from 'react'
+import React, {Component} from 'react'
+import './App'
 
 export default class dragAndDrop extends Component {
     render(){
