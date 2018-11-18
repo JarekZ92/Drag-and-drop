@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 export default class dragAndDrop extends Component {
+    
   state = {
     tasks: [
       { name: "Task1", category: "wip", color: "yellow" },
@@ -22,9 +23,23 @@ export default class dragAndDrop extends Component {
           key={t.name}
           className="draggable"
           style={{ backgroundColor: t.color }}
-        />
+        >
+          {t.name}
+        </div>
       );
     });
-    return <div className="main_container">Drag and Drop</div>;
+    return (
+      <div className="main_container">
+        <h2 className="header">Drag and Drop</h2>
+        <div className="wip">
+          <span className="task-header">Wip</span>
+          {tasks.wip}
+        </div>
+        <div className="droppable">
+          <span className="task-header">Completed</span>
+          {tasks.done}
+        </div>
+      </div>
+    );
   }
 }
