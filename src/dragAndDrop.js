@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import './App.css';
 
 export default class dragAndDrop extends Component {
-    
+
   state = {
     tasks: [
       { name: "Task1", category: "wip", color: "yellow" },
@@ -10,6 +10,14 @@ export default class dragAndDrop extends Component {
       { name: "Task3", category: "done", color: "skyblue" }
     ]
   };
+  
+  onDragStart = (ev, id) => {
+    ev.dataTransfer.setData(id, 'id')
+}
+
+  onDragOver = (ev) => {
+      ev.preventDefault()
+  }
 
   render() {
     var tasks = {
@@ -17,10 +25,12 @@ export default class dragAndDrop extends Component {
       done: []
     };
 
-    this.state.tasks.forEach(t => {
+    this.state.tasks.forEach((t) => {
       tasks[t.category].push(
         <div
           key={t.name}
+          onDragStart = {(e) => this.onDragStart(e, t.name)}
+          draggable
           className="draggable"
           style={{ backgroundColor: t.color }}
         >
@@ -35,7 +45,9 @@ export default class dragAndDrop extends Component {
           <span className="task-header">Wip</span>
           {tasks.wip}
         </div>
-        <div className="droppable">
+        <div className="droppable" 
+        onDragOver= {(e)=>this.onDragOver(e)}>
+        
           <span className="task-header">Completed</span>
           {tasks.done}
         </div>
