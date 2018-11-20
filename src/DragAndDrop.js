@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './App.css';
+import App from './App'
 
 export default class dragAndDrop extends Component {
 
@@ -56,12 +57,14 @@ export default class dragAndDrop extends Component {
     return (
       <div className="main_container">
         <h2 className="header">Drag and Drop</h2>
+
         <div className="wip"
         onDragOver={(e) => this.onDragOver(e)}
         onDrop={(e) => {this.onDrop(e, "wip")}}>
           <span className="task-header">Wip</span>
           {tasks.wip}
         </div>
+        
         <div className="droppable" 
         onDragOver= {(e)=>this.onDragOver(e)}
         onDrop= {(e) => this.onDrop(e, "done")}>
